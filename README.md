@@ -1,0 +1,2 @@
+# Mahjong
+Mahjong base code
