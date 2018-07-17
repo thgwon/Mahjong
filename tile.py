@@ -32,9 +32,9 @@ class Tile:
     def num(self):
         return self._num
 
-    #property
-    def dora_vaslue(self):
-        return sesf._basic_dora_value + self._temp_dora_value
+    @property
+    def dora_value(self):
+        return self._basic_dora_value + self._temp_dora_value
 
     @property
     def type(self):
