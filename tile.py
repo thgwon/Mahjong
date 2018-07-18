@@ -1,12 +1,7 @@
 from constant import TileConstant
 
-class Tile:
-    # m :  1 ~  9
-    # p : 11 ~ 19
-    # s : 21 ~ 29
-    # w : 31 e, 33 s, 35 w, 37 n
-    # d : 41 w, 43 g, 45 r
 
+class Tile:
     def __init__(self, num, dora_value=0):
         if num not in TileConstant.TILE_NUMS:
             raise NotImplemented
@@ -14,7 +9,6 @@ class Tile:
         self._num = num
         self._basic_dora_value=dora_value
         self._temp_dora_value=0
-
 
     @property
     def num(self):
@@ -27,7 +21,6 @@ class Tile:
     @property
     def type(self):
         return TileConstant.TYPES[int(self._num / 10)]
-
 
     @staticmethod
     def calc_tile_num(tile_code):

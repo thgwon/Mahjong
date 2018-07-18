@@ -8,19 +8,21 @@ class Buro:
 
 
 class Chi(Buro):
-    # type : 0 -> a-2, a-1, a
-    #        1 -> a-1, a, a+1
-    #        2 -> a, a+1, a+2
-    def __init__(self, tile, type):
+    def __init__(self, tile, tile1, tile2):
         super().__init__(tile)
-        self._type = type
+        self._tile1 = tile1
+        self._tile2 = tile2
+        self._validate_chi()
+
+    def _validate_chi(self):
+        tile_nums = [self._tile.num, self._tile1.num, self._tile2.num]
+        tile_nums.sort()
+        assert tile_nums[0] + 1 == tile_nums[1] and tile_nums[1] + 1 == tile_nums[2]
 
     def __str__(self):
-        raise NotImplementedError()
-
+        return " ".join([str(self._tile), str(self._tile1), str(self._tile2), BuroConstant.BURO_STRINGS[0]])
 
 class Pon(Buro):
-
     # where : 0 -> 상가
     #         1 -> 대가
     #         2 -> 하가
@@ -56,7 +58,7 @@ class ConcealedKan(Buro):
         super().__init__(tile)
 
     def __str__(self):
-        return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile), BuroConstant.BURO_STRINGS[4]])
+        return " ".join([str(self._tile), BuroConstant.BURO_STRINGS[4]])
 
 
 class BuroFactory:
@@ -68,7 +70,9 @@ class BuroFactory:
         buro_tile = Tile(Tile.calc_tile_num(buro_tile_code))
 
         if buro_prefix == BuroConstant.BURO_CODES[0]:
-            return Chi(buro_tile, int(buro_etc_param))
+            buro_tile1 = Tile(Tile.calc_tile_num(buro_etc_param[:2]))
+            buro_tile2 = Tile(Tile.calc_tile_num(buro_etc_param[2:]))
+            return Chi(buro_tile, buro_tile1, buro_tile2)
 
         elif buro_prefix == BuroConstant.BURO_CODES[1]:
             return Pon(buro_tile, int(buro_etc_param))

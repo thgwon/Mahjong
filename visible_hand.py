@@ -14,4 +14,4 @@ class VisibleHand:
         self._buros.append(buro)
 
     def __str__(self):
-        return ' '.join([str(tile) for tile in self._buros])
+        return ' / '.join([str(tile) for tile in self._buros])
