@@ -8,7 +8,7 @@ class Tile:
     # d : 41 w, 43 g, 45 r
 
     def __init__(self, num, dora_value=0):
-        if num not in TileConstant.TILE_NUM_LIST:
+        if num not in TileConstant.TILE_NUMS:
             raise NotImplemented
 
         self._num = num
@@ -26,14 +26,14 @@ class Tile:
 
     @property
     def type(self):
-        return TileConstant.TYPE_LIST[int(self._num/10)]
+        return TileConstant.TYPES[int(self._num / 10)]
 
     def __repr__(self) -> str:
         if self.num < 30:
             return str(self.num % 10)+self.type
         if self.num < 40:
-            return TileConstant.WIND_LIST[int(self.num % 10/2)]
-        return TileConstant.DRAGON_LIST[int(self.num % 10/2)]
+            return TileConstant.WINDS[int(self.num % 10 / 2)]
+        return TileConstant.DRAGONS[int(self.num % 10 / 2)]
 
     def __lt__(self, other):
         return self.num < other.num
