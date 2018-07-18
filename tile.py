@@ -28,12 +28,14 @@ class Tile:
     def type(self):
         return TileConstant.TYPES[int(self._num / 10)]
 
-    def __repr__(self) -> str:
-        if self.num < 30:
-            return str(self.num % 10)+self.type
-        if self.num < 40:
-            return TileConstant.WINDS[int(self.num % 10 / 2)]
-        return TileConstant.DRAGONS[int(self.num % 10 / 2)]
+
+    @staticmethod
+    def calc_tile_num(tile_code):
+        return TileConstant.TILE_CODE_DICT[tile_code]
+
+
+    def __str__(self) -> str:
+        return TileConstant.TILE_STR_DICT[self._num]
 
     def __lt__(self, other):
         return self.num < other.num
