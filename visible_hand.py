@@ -1,5 +1,4 @@
-from buro import Buro
-
+from buro import Buro, ConcealedKan
 
 class VisibleHand:
     def __init__(self):
@@ -15,3 +14,12 @@ class VisibleHand:
 
     def __str__(self):
         return ' / '.join([str(tile) for tile in self._buros])
+
+    def check_mensen(self):
+        for buro in self._buros:
+            if not isinstance(buro, ConcealedKan):
+                return False
+        return True
+
+    def count_tile(self, tile):
+        return sum(buro.count_tile(tile) for buro in self._buros)

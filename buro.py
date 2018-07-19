@@ -6,6 +6,8 @@ class Buro:
     def __init__(self, tile):
         self._tile = tile
 
+    def count_tiles(self, tile):
+        raise NotImplementedError()
 
 class Chi(Buro):
     def __init__(self, tile, tile1, tile2):
@@ -22,6 +24,9 @@ class Chi(Buro):
     def __str__(self):
         return " ".join([str(self._tile), str(self._tile1), str(self._tile2), BuroConstant.BURO_STRINGS[0]])
 
+    def count_tiles(self, tile):
+        return sum (1 for t in [self._tile1, self._tile2, self._tile] if tile.num==t.num)
+
 class Pon(Buro):
     # where : 0 -> 상가
     #         1 -> 대가
@@ -34,6 +39,8 @@ class Pon(Buro):
     def __str__(self):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile), BuroConstant.BURO_STRINGS[1]])
 
+    def count_tiles(self, tile):
+        return 3 * (1 if self._tile.num == tile.num else 0)
 
 class BigMeldedKan(Buro):
     def __init__(self, tile, where):
@@ -42,6 +49,9 @@ class BigMeldedKan(Buro):
 
     def __str__(self):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile), BuroConstant.BURO_STRINGS[2]])
+
+    def count_tiles(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
 
 
 class SmallMeldedKan(Buro):
@@ -52,6 +62,9 @@ class SmallMeldedKan(Buro):
     def __str__(self):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile), BuroConstant.BURO_STRINGS[3]])
 
+    def count_tiles(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
+
 
 class ConcealedKan(Buro):
     def __init__(self, tile):
@@ -59,6 +72,9 @@ class ConcealedKan(Buro):
 
     def __str__(self):
         return " ".join([str(self._tile), BuroConstant.BURO_STRINGS[4]])
+
+    def count_tiles(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
 
 
 class BuroFactory:
