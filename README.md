@@ -3,8 +3,6 @@ Mahjong base code
 
 TODO LIST
 
-Hand_complete_checker
-
 Yaku_normal
 
 Yakuman
