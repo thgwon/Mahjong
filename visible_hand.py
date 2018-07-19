@@ -21,5 +21,5 @@ class VisibleHand:
                 return False
         return True
 
-    def count_tile(self, tile):
-        return sum(buro.count_tile(tile) for buro in self._buros)
+    def count_tile(self, tile_num):
+        return sum(buro.count_tile(tile_num) for buro in self._buros)

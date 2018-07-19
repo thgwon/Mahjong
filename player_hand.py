@@ -21,6 +21,9 @@ class PlayerHand:
         assert isinstance(tile, Tile)
         return self._invisible_hand.count_tile(tile) + self._visible_hand.count_tile(tile)
 
+    def count_tile(self, tile_num):
+        return self._invisible_hand.count_tile(tile_num) + self._visible_hand.count_tile(tile_num)
+
     def check_mensen(self):
         return self._visible_hand.check_mensen()
 

@@ -16,5 +16,5 @@ class InvisibleHand:
     def __str__(self):
         return ' '.join([str(tile) for tile in self._tiles])
 
-    def count_tile(self, tile):
-        return sum( 1 for t in self._tiles if t.num == tile.num )
+    def count_tile(self, tile_num):
+        return sum( 1 for t in self._tiles if t.num == tile_num )
