@@ -26,6 +26,37 @@ class TileConstant:
 
 
 class BuroConstant:
-    BURO_CODES = ['CH', 'PO', 'BK', 'SK', 'CK']
+    CHI_CODE = 'CH'
+    PON_CODE = 'PO'
+    BIG_MELDED_KAN_CODE = 'BK'
+    SMALL_MELDED_KAN_CODE = 'SK'
+    CONCEALED_KAN_CODE = 'CK'
     WHERE_LIST = ['상가', '대가', '하가']
-    BURO_STRINGS = ['치', '퐁', '대명깡', '소명깡', '안깡']
+    BURO_STRINGS = {CHI_CODE:'치',
+                    PON_CODE:'퐁',
+                    BIG_MELDED_KAN_CODE:'대명깡',
+                    SMALL_MELDED_KAN_CODE:'소명깡',
+                    CONCEALED_KAN_CODE:'안깡'}
+
+class HandForPointCalcConstant:
+    RON = 'RON'
+    TSUMO = 'TSUMO'
+    AGARI_TYPES = [RON, TSUMO]
+
+    EAST = 'E'
+    SOUTH = 'S'
+    WEST = 'W'
+    NORTH = 'N'
+    WINDS = [EAST, SOUTH, WEST, NORTH]
+
+    NO_RIICHI = 'NO'
+    RIICHI = 'RI'
+    DOUBLE_RIICHI = 'DR'
+    OPEN_RIICHI = 'OR'
+    RIICHI_TYPES = [NO_RIICHI, RIICHI, DOUBLE_RIICHI, OPEN_RIICHI]
+
+    NO_SPECIAL = 'NO'
+    ROBBING_QUAD_WIN = 'RQ'
+    DEAD_WALL_WIN = 'DW'
+    LAST_TILE_WIN = 'LT'
+    SPECIAL_WINS = [NO_SPECIAL, ROBBING_QUAD_WIN, DEAD_WALL_WIN, LAST_TILE_WIN]

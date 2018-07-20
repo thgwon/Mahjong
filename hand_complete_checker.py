@@ -12,19 +12,18 @@ class HandCompleteChecker:
         return len(self.calculate_waiting(hand)) != 0
 
     def calculate_waiting(self, hand):
-        return [Tile(tile_num) for tile_num in TileConstant.TILE_NUMS if self.check_waiting(hand, Tile(tile_num))]
+        return [Tile(tile_num) for tile_num in TileConstant.TILE_NUMS if self.check_waiting(hand, tile_num)]
 
-    def check_waiting(self, hand, tile):
-        if hand.count_tile(tile.num) == 4: return False
-        return self.check_normal_waiting(hand, tile) or \
-            self.check_chitoi_waiting(hand, tile) or \
-            self.check_koukusi_waiting(hand, tile)
+    def check_waiting(self, hand, tile_num):
+        if hand.count_tile(tile_num) == 4: return False
+        return self.check_normal_waiting(hand, tile_num) or \
+            self.check_chitoi_waiting(hand, tile_num) or \
+            self.check_koukusi_waiting(hand, tile_num)
 
-    def check_normal_waiting(self, hand, tile):
+    def check_normal_waiting(self, hand, tile_num):
         tile_count_od = OrderedDict()
-        for tile_num in TileConstant.TILE_NUMS:
-            tile_count_od[tile_num] = hand.count_invisible_tile(tile_num) + (1 if tile.num == tile_num else 0)
-
+        for iter_tile_num in TileConstant.TILE_NUMS:
+            tile_count_od[iter_tile_num] = hand.count_invisible_tile(iter_tile_num) + (1 if tile_num == iter_tile_num else 0)
         return self._check_normal_waiting_from_od(tile_count_od, False)
 
     def _check_normal_waiting_from_od(self, tile_count_od, head_erase):
@@ -68,25 +67,25 @@ class HandCompleteChecker:
         new_tile_count_od[tile_num] -= 3
         return self._check_normal_waiting_from_od(new_tile_count_od, head_erase)
 
-    def check_chitoi_waiting(self, hand, tile):
-        assert isinstance(hand, PlayerHand) and isinstance(tile, Tile)
+    def check_chitoi_waiting(self, hand, tile_num):
+        assert isinstance(hand, PlayerHand)
 
         if not hand.check_mensen(): return False
-        for tile_num in TileConstant.TILE_NUMS:
-            tile_num = hand.count_tile(tile_num) + (1 if tile.num == tile_num else 0)
-            if tile_num % 2 == 1:
+        for iter_tile_num in TileConstant.TILE_NUMS:
+            tile_count = hand.count_tile(iter_tile_num) + (1 if tile_num == iter_tile_num else 0)
+            if tile_count % 2 == 1:
                 return False
-            elif not self._four_tile_chitoi and tile_num > 2:
+            elif not self._four_tile_chitoi and tile_count > 2:
                 return False
         return True
 
-    def check_koukusi_waiting(self, hand, tile):
-        assert isinstance(hand, PlayerHand) and isinstance(tile, Tile)
+    def check_koukusi_waiting(self, hand, tile_num):
+        assert isinstance(hand, PlayerHand)
         if not hand.check_mensen(): return False
 
         exist_pair = False
-        for tile_num in TileConstant.HONORS + TileConstant.TERMINALS:
-            tile_count = hand.count_tile(tile_num) + (1 if tile.num == tile_num else 0)
+        for iter_tile_num in TileConstant.HONORS + TileConstant.TERMINALS:
+            tile_count = hand.count_tile(tile_num) + (1 if tile_num == iter_tile_num else 0)
             if tile_count == 0 or tile_count > 2:
                 return False
             elif exist_pair and tile_count == 2:
