@@ -23,7 +23,7 @@ class HandCompleteChecker:
     def check_normal_waiting(self, hand, tile):
         tile_count_od = OrderedDict()
         for tile_num in TileConstant.TILE_NUMS:
-            tile_count_od[tile_num] = hand.count_tile(tile_num) + (1 if tile.num == tile_num else 0)
+            tile_count_od[tile_num] = hand.count_invisible_tile(tile_num) + (1 if tile.num == tile_num else 0)
 
         return self._check_normal_waiting_from_od(tile_count_od, False)
 
