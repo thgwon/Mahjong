@@ -1,6 +1,5 @@
 from hand_for_point_calc import HandForPointCalc
 from hand_complete_checker import HandCompleteChecker
-from tile import Tile
 from player_hand import PlayerHand
 
 class PointCalculator:
