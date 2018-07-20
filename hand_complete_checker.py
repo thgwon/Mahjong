@@ -2,11 +2,11 @@ from constant import TileConstant
 from tile import Tile
 from player_hand import PlayerHand
 from collections import OrderedDict
-
+from constant import RuleConstant
 
 class HandCompleteChecker:
-    def __init__(self, four_tile_chitoi=False):
-        self._four_tile_chitoi = four_tile_chitoi
+    def __init__(self, rule):
+        self._rule = rule
 
     def check_tenpai(self, hand):
         return len(self.calculate_waiting(hand)) != 0
@@ -75,7 +75,7 @@ class HandCompleteChecker:
             tile_count = hand.count_tile(iter_tile_num) + (1 if tile_num == iter_tile_num else 0)
             if tile_count % 2 == 1:
                 return False
-            elif not self._four_tile_chitoi and tile_count > 2:
+            elif not self._rule[RuleConstant.FOUR_TILE_CHITOI] and tile_count > 2:
                 return False
         return True
 
@@ -85,7 +85,7 @@ class HandCompleteChecker:
 
         exist_pair = False
         for iter_tile_num in TileConstant.HONORS + TileConstant.TERMINALS:
-            tile_count = hand.count_tile(tile_num) + (1 if tile_num == iter_tile_num else 0)
+            tile_count = hand.count_tile(iter_tile_num) + (1 if tile_num == iter_tile_num else 0)
             if tile_count == 0 or tile_count > 2:
                 return False
             elif exist_pair and tile_count == 2:

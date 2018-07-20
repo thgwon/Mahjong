@@ -60,3 +60,6 @@ class HandForPointCalcConstant:
     DEAD_WALL_WIN = 'DW'
     LAST_TILE_WIN = 'LT'
     SPECIAL_WINS = [NO_SPECIAL, ROBBING_QUAD_WIN, DEAD_WALL_WIN, LAST_TILE_WIN]
+
+class RuleConstant:
+    FOUR_TILE_CHITOI = "ftc"

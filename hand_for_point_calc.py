@@ -1,7 +1,7 @@
 from player_hand import PlayerHand
 from tile import Tile
 from constant import HandForPointCalcConstant
-from hand_complete_checker import HandCompleteChecker
+
 
 class HandForPointCalc:
     def __init__(self, hand, agari_tile, agari_type, prevalent_wind, seat_wind,
@@ -40,5 +40,11 @@ class HandForPointCalc:
             self._agari_type == HandForPointCalcConstant.TSUMO
         assert self._hand.count_tile(self._agari_tile.num) <= 3
         assert self._dora_count >= 0
-        assert HandCompleteChecker().check_waiting()
 
+    @property
+    def hand(self):
+        return self._hand
+
+    @property
+    def agari_tile(self):
+        return self._agari_tile

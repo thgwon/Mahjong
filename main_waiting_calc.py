@@ -1,8 +1,13 @@
 from player_hand import PlayerHand
 from hand_complete_checker import HandCompleteChecker
+from rule import Rule
+from point_calculator import PointCalculator
+from hand_for_point_calc import HandForPointCalc
+
 
 def main():
-    hcc = HandCompleteChecker()
+    rule = Rule()
+    hcc = HandCompleteChecker(rule)
     print("대기패 계산기")
     while True:
         hand_code = input("손패 코드 입력하세요: (exit 입력으로 종료)")
@@ -17,6 +22,7 @@ def main():
         print(hand)
         waiting = hcc.calculate_waiting(hand)
         print("대기 :", ' '.join(map(str,waiting)))
+        print("점수 :", PointCalculator(rule).calc_point())
 
 
 if __name__ == '__main__':
