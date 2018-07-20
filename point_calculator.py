@@ -14,6 +14,6 @@ class PointCalculator:
         return 0
 
     def _validate_agari(self, hand):
-        assert isinstance(hand.hand, PlayerHand) and isinstance(hand.agari_tile, Tile)
+        assert isinstance(hand.hand, PlayerHand)
         hcc = HandCompleteChecker(self._rule)
-        hcc.check_waiting(hand.hand, hand.agari_tile.num)
+        hcc.check_waiting(hand.hand, hand.agari_tile_num)

@@ -4,7 +4,7 @@ from rule import Rule
 from point_calculator import PointCalculator
 from hand_for_point_calc import HandForPointCalc
 from constant import HandForPointCalcConstant
-
+from tile import Tile
 
 def main():
     rule = Rule()
@@ -23,7 +23,7 @@ def main():
 
         agari_tile_code = input("화료 패 코드 입력하세요: ")
         try:
-            agari_tile = Tile.calc_tile_num(agari_tile)
+            agari_tile = Tile.calc_tile_num(agari_tile_code)
         except:
             print("코드가 이상하다.")
             continue
@@ -31,13 +31,13 @@ def main():
 
         agari_type_num = input("론인가 쯔모인가: (0/1)")
         try:
-           agari_type = HandForPointCalcConstant[int(agari_type_num)]
+           agari_type = HandForPointCalcConstant.AGARI_TYPES[int(agari_type_num)]
         except:
             print("코드가 이상하다.")
             continue
         print(agari_type)
 
-        hand_pc = HandForPointCalc(hand, agari_tile, agari_type_num,
+        hand_pc = HandForPointCalc(hand, agari_tile, agari_type,
                           HandForPointCalcConstant.EAST, HandForPointCalcConstant.EAST)
 
         print("점수 :", PointCalculator(rule).calc_point(hand_pc))
