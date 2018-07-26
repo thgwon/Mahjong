@@ -22,7 +22,6 @@ def main():
         print(hand)
         waiting = hcc.calculate_waiting(hand)
         print("대기 :", ' '.join(map(str,waiting)))
-        print("점수 :", PointCalculator(rule).calc_point())
 
 
 if __name__ == '__main__':

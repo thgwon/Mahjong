@@ -23,7 +23,7 @@ def main():
 
         agari_tile_code = input("화료 패 코드 입력하세요: ")
         try:
-            agari_tile = Tile.calc_tile_num(agari_tile_code)
+            agari_tile = Tile(Tile.calc_tile_num(agari_tile_code))
         except:
             print("코드가 이상하다.")
             continue
@@ -40,7 +40,7 @@ def main():
         hand_pc = HandForPointCalc(hand, agari_tile, agari_type,
                           HandForPointCalcConstant.EAST, HandForPointCalcConstant.EAST)
 
-        print("점수 :", PointCalculator(rule).calc_point(hand_pc))
+        print("점수 :", PointCalculator(rule).calc_agari_status(hand_pc))
 
 
 if __name__ == '__main__':

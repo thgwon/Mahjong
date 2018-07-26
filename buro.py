@@ -24,8 +24,8 @@ class Chi(Buro):
     def __str__(self):
         return " ".join([str(self._tile), str(self._tile1), str(self._tile2), BuroConstant.BURO_STRINGS[BuroConstant.CHI_CODE]])
 
-    def count_tile(self, tile_num):
-        return sum (1 for t in [self._tile1, self._tile2, self._tile] if tile_num == t.num)
+    def count_tile(self, tile):
+        return sum (1 for t in [self._tile1, self._tile2, self._tile] if tile.num == t.num)
 
 class Pon(Buro):
     # where : 0 -> 상가
@@ -40,8 +40,8 @@ class Pon(Buro):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile),
                          BuroConstant.BURO_STRINGS[BuroConstant.PON_CODE]])
 
-    def count_tile(self, tile_num):
-        return 3 * (1 if self._tile.num == tile_num else 0)
+    def count_tile(self, tile):
+        return 3 * (1 if self._tile.num == tile.num else 0)
 
 class BigMeldedKan(Buro):
     def __init__(self, tile, where):
@@ -52,8 +52,8 @@ class BigMeldedKan(Buro):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile),
                          BuroConstant.BURO_STRINGS[BuroConstant.BIG_MELDED_KAN_CODE]])
 
-    def count_tile(self, tile_num):
-        return 4 * (1 if self._tile.num == tile_num else 0)
+    def count_tile(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
 
 
 class SmallMeldedKan(Buro):
@@ -65,8 +65,8 @@ class SmallMeldedKan(Buro):
         return " ".join([BuroConstant.WHERE_LIST[self._where], str(self._tile),
                          BuroConstant.BURO_STRINGS[BuroConstant.SMALL_MELDED_KAN_CODE]])
 
-    def count_tile(self, tile_num):
-        return 4 * (1 if self._tile.num == tile_num else 0)
+    def count_tile(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
 
 
 class ConcealedKan(Buro):
@@ -76,8 +76,8 @@ class ConcealedKan(Buro):
     def __str__(self):
         return " ".join([str(self._tile), BuroConstant.BURO_STRINGS[BuroConstant.CONCEALED_KAN_CODE]])
 
-    def count_tile(self, tile_num):
-        return 4 * (1 if self._tile.num == tile_num else 0)
+    def count_tile(self, tile):
+        return 4 * (1 if self._tile.num == tile.num else 0)
 
 
 class BuroFactory:
